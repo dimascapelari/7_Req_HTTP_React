@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 // 4 - custom hook
 
-export const useFetch = (url: string) => {
-  const [data, setData] = useState(null);
+export const useFetch = <T>(url: string) => {
+  const [data, setData] = useState<T | null>(null);
 
   useEffect(() => {
     const fetData = async () => {

@@ -1,6 +1,9 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 
+// 4 - custom hook
+import { useFetch } from "./hooks/useFetch";
+
 const url = "http://localhost:3000/products";
 
 interface Product {
@@ -11,20 +14,23 @@ interface Product {
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
+  // 4 - custom hook
+  const { data: items } = useFetch<Product[]>(url);
+
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
 
   // 1- resgatando dados
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(url);
-      const data = await res.json();
-      setProducts(data);
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const res = await fetch(url);
+  //     const data = await res.json();
+  //     setProducts(data);
+  //   }
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   // 2 - add de produtos
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,11 +62,12 @@ function App() {
       <h1>Lista de Produtos</h1>
 
       <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            {product.name} - R$: {product.price}
-          </li>
-        ))}
+        {items &&
+          items.map((product) => (
+            <li key={product.id}>
+              {product.name} - R$: {product.price}
+            </li>
+          ))}
       </ul>
       <div className="add-product">
         <form onSubmit={handleSubmit}>
