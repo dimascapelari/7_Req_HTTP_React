@@ -14,10 +14,12 @@ interface Product {
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
+
   // 4 - custom hook
   const { data: items } = useFetch<Product[]>(url);
 
   const [name, setName] = useState("");
+
   const [price, setPrice] = useState("");
 
   // 1- resgatando dados
