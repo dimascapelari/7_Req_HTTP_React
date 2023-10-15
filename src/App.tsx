@@ -16,7 +16,7 @@ function App() {
   // const [products, setProducts] = useState<Product[]>([]);
 
   // 4 - custom hook
-  const { data: items, httpConfig, loading } = useFetch<Product[]>(url);
+  const { data: items, httpConfig, loading, error } = useFetch<Product[]>(url);
 
   const [name, setName] = useState("");
 
@@ -68,6 +68,7 @@ function App() {
       <h1>Lista de Produtos</h1>
       {/* 6 - loading */}
       {loading && <p>Carregando dados...</p>}
+      {error && <p>{error}</p>}
       {!loading && (
         <ul>
           {items &&
