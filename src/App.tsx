@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // 4 - custom hook
 import { useFetch } from "./hooks/useFetch";
@@ -13,7 +13,7 @@ interface Product {
 }
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
+  // const [products, setProducts] = useState<Product[]>([]);
 
   // 4 - custom hook
   const { data: items, httpConfig, loading } = useFetch<Product[]>(url);

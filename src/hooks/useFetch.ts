@@ -19,7 +19,7 @@ export const useFetch = <T>(url: string) => {
   // 6 - loading
   const [loading, setLoading] = useState(false);
 
-  const httpConfig = (data: T, method: string) => {
+  const httpConfig = (data: T | T[], method: string) => {
     if (method === "POST") {
       setConfig({
         method: "POST",
